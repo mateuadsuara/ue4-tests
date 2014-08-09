@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\TestingFlappy.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{72A2E9C0-A5FB-46B0-AF8B-1B129ADE8FC0}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\TestingFlappy.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\TestingFlappyEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{3EA3EBEC-18E9-4132-B492-8105D43E5385}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\TestingFlappy">
+			<UniqueIdentifier>{1370CB93-D45C-4B77-A62B-7CA1DACA6DA2}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\TestingFlappy\TestingFlappy.Build.cs">
+			<Filter>Source\TestingFlappy</Filter>
+		</None >
+		<Filter Include="Source\TestingFlappy\Private">
+			<UniqueIdentifier>{4C14B6D8-A9B2-47E6-AEB4-FC4A5D00133E}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\TestingFlappy\Private\TestingFlappy.cpp">
+			<Filter>Source\TestingFlappy\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TestingFlappy\Private\TestingFlappyCharacter.cpp">
+			<Filter>Source\TestingFlappy\Private</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\TestingFlappy\Private\TestingFlappyGameMode.cpp">
+			<Filter>Source\TestingFlappy\Private</Filter>
+		</ClCompile >
+		<Filter Include="Source\TestingFlappy\Public">
+			<UniqueIdentifier>{96E17432-65A6-4920-9A3A-8249CC5E8EF4}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="..\..\Source\TestingFlappy\Public\TestingFlappy.h">
+			<Filter>Source\TestingFlappy\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TestingFlappy\Public\TestingFlappyCharacter.h">
+			<Filter>Source\TestingFlappy\Public</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\TestingFlappy\Public\TestingFlappyGameMode.h">
+			<Filter>Source\TestingFlappy\Public</Filter>
+		</ClInclude >
+		<Filter Include="Source\TestingFlappy\Resources">
+			<UniqueIdentifier>{8716EE38-4081-4F0C-9E6B-F6F2E3F20343}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Source\TestingFlappy\Resources\Windows">
+			<UniqueIdentifier>{CF8F3331-E4FE-4B78-B657-359EA80D7894}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\TestingFlappy\Resources\Windows\TestingFlappy.ico">
+			<Filter>Source\TestingFlappy\Resources\Windows</Filter>
+		</None >
+		<ResourceCompile Include="..\..\Source\TestingFlappy\Resources\Windows\TestingFlappy.rc">
+			<Filter>Source\TestingFlappy\Resources\Windows</Filter>
+		</ResourceCompile >
+	</ItemGroup>
+</Project>
