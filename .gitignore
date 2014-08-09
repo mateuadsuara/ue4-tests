@@ -2,5 +2,7 @@ Binaries
 DerivedDataCache
 Saved
 *.opensdf
+*.sdf
+*.v12.suo
 Intermediate/Build
 Intermediate/CachedAssetRegistry.bin
