@@ -17,7 +17,7 @@ bool FMySimpleTest::RunTest(const FString& Parameters)
 {
 
 	ADD_LATENT_AUTOMATION_COMMAND(FEngineWaitLatentCommand(2.0f));
-	ADD_LATENT_AUTOMATION_COMMAND(FExecStringLatentCommand(TEXT("setres 555640x5555480")));
+	//ADD_LATENT_AUTOMATION_COMMAND(FExecStringLatentCommand(TEXT("setres 555640x5555480")));
 
 	return true;
 }
