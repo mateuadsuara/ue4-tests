@@ -16,10 +16,16 @@ class ATestingFlappyCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	TSubobjectPtr<class USpringArmComponent> CameraBoom;
 
-protected:
 
-	/** Called for side to side input */
-	void MoveRight(float Val);
+	/** called when projectile hits something */
+	UFUNCTION()
+		void OnHit(AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+protected:
+	void Tick(float DeltaTime);
+	
+	void Jump();
+
 
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
