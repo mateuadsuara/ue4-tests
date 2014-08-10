@@ -6,9 +6,10 @@
 ATestingFlappyCharacter::ATestingFlappyCharacter(const class FPostConstructInitializeProperties& PCIP)
 	: Super(PCIP)
 {
+	PrimaryActorTick.bCanEverTick = true;
 	// Set size for collision capsule
 	CapsuleComponent->InitCapsuleSize(42.f, 96.0f);
-
+	CapsuleComponent->OnComponentHit.AddDynamic(this, &ATestingFlappyCharacter::OnHit);
 	// Don't rotate when the controller rotates.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
@@ -30,16 +31,31 @@ ATestingFlappyCharacter::ATestingFlappyCharacter(const class FPostConstructIniti
 	// Configure character movement
 	CharacterMovement->bOrientRotationToMovement = true; // Face in the direction we are moving..
 	CharacterMovement->RotationRate = FRotator(0.0f, 720.0f, 0.0f); // ...at this rotation rate
-	CharacterMovement->GravityScale = 2.f;
-	CharacterMovement->AirControl = 0.80f;
+	CharacterMovement->GravityScale = 1.5f;
+	CharacterMovement->AirControl = 0.0f;
 	CharacterMovement->JumpZVelocity = 1000.f;
 	CharacterMovement->GroundFriction = 3.f;
 	CharacterMovement->MaxWalkSpeed = 600.f;
 	CharacterMovement->MaxFlySpeed = 600.f;
 
+	
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
+
+void ATestingFlappyCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	FVector Actual = this->GetTransform().GetLocation();
+	FVector* Next = new FVector(Actual.X, Actual.Y - DeltaTime * 100, Actual.Z);
+	this->SetActorLocation(*Next);
+
+	//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, TEXT("DeltaTime %f"));
+	//UE_LOG(LogTemp, Log, TEXT("DeltaTime %f"), DeltaTime); // this does nothing
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // Input
@@ -47,16 +63,14 @@ ATestingFlappyCharacter::ATestingFlappyCharacter(const class FPostConstructIniti
 void ATestingFlappyCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	// set up gameplay key bindings
-	InputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	InputComponent->BindAxis("MoveRight", this, &ATestingFlappyCharacter::MoveRight);
+	InputComponent->BindAction("Jump", IE_Pressed, this, &ATestingFlappyCharacter::Jump);
 
 	InputComponent->BindTouch(IE_Pressed, this, &ATestingFlappyCharacter::TouchStarted);
 }
 
-void ATestingFlappyCharacter::MoveRight(float Value)
+void ATestingFlappyCharacter::Jump()
 {
-	// add movement in that direction
-	AddMovementInput(FVector(0.f,-1.f,0.f), Value);
+	CharacterMovement->DoJump();
 }
 
 void ATestingFlappyCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
@@ -64,3 +78,9 @@ void ATestingFlappyCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, 
 	// jump on any touch
 	Jump();
 }
+
+void ATestingFlappyCharacter::OnHit(AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit){
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, TEXT("hit"));
+
+}
+
