@@ -25,6 +25,18 @@ public:
 		return NULL;
 	};
 
+	template <typename T = AActor> TArray<T*> All() {
+		TArray<T*> Array = TArray<T*>();
+
+		//UE_LOG(LogTemp, Warning, TEXT("finding all"));
+		for (TActorIterator<T> ActorItr(World); ActorItr; ++ActorItr) {
+			//UE_LOG(LogTemp, Warning, TEXT("%s: %s"), *ActorItr->GetName(), *ActorItr->GetActorLocation().ToString());
+			Array.Add(*ActorItr);
+		}
+
+		return Array;
+	}
+
 private:
 	UWorld* World;
 };
