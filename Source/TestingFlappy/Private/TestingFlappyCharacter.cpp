@@ -3,6 +3,8 @@
 #include "TestingFlappy.h"
 #include "TestingFlappyCharacter.h"
 
+#include "FindUtils.h"
+
 ATestingFlappyCharacter::ATestingFlappyCharacter(const class FPostConstructInitializeProperties& PCIP)
 	: Super(PCIP)
 {
@@ -81,7 +83,7 @@ void ATestingFlappyCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, 
 
 void ATestingFlappyCharacter::OnHit(AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit){
 	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, TEXT("hit"));
-	Destroy();
 
+	AActor* playerStart = FindUtils(this).GetAActorByName(TEXT("PlayerStart"));
+	this->TeleportTo(playerStart->GetActorLocation(), playerStart->GetActorRotation());
 }
-
