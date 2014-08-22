@@ -31,7 +31,7 @@ ATestingFlappyCharacter::ATestingFlappyCharacter(const class FPostConstructIniti
 	// Configure character movement
 	CharacterMovement->bOrientRotationToMovement = true; // Face in the direction we are moving..
 	CharacterMovement->RotationRate = FRotator(0.0f, 720.0f, 0.0f); // ...at this rotation rate
-	CharacterMovement->GravityScale = 1.5f;
+	CharacterMovement->GravityScale = 1.7f;
 	CharacterMovement->AirControl = 0.0f;
 	CharacterMovement->JumpZVelocity = 1000.f;
 	CharacterMovement->GroundFriction = 3.f;
@@ -49,7 +49,7 @@ void ATestingFlappyCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	FVector Actual = this->GetTransform().GetLocation();
-	FVector* Next = new FVector(Actual.X, Actual.Y - DeltaTime * 100, Actual.Z);
+	FVector* Next = new FVector(Actual.X, Actual.Y - DeltaTime * 400, Actual.Z);
 	this->SetActorLocation(*Next);
 
 	//GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, TEXT("DeltaTime %f"));
@@ -81,6 +81,7 @@ void ATestingFlappyCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, 
 
 void ATestingFlappyCharacter::OnHit(AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit){
 	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, TEXT("hit"));
+	Destroy();
 
 }
 
