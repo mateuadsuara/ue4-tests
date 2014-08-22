@@ -84,6 +84,6 @@ void ATestingFlappyCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, 
 void ATestingFlappyCharacter::OnHit(AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit){
 	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Cyan, TEXT("hit"));
 
-	AActor* playerStart = FindUtils(this).GetAActorByName(TEXT("PlayerStart"));
+	APlayerStart* playerStart = FindUtils(GetWorld()).ByName<APlayerStart>(TEXT("PlayerStart"));
 	this->TeleportTo(playerStart->GetActorLocation(), playerStart->GetActorRotation());
 }
